@@ -55,28 +55,16 @@ const GameBoard = () => {
     return board;
   };
 
-  const moveLeft = (board) => {
-    const nBoard1 = compress(board);
-    const nBoard2 = merge(nBoard1);
-    return compress(nBoard2);
+  const moveFunctionCreator = (main, mediator, result) => {
+    const nBoard1 = main(board);
+    const nBoard2 = mediator(nBoard1);
+    return result(nBoard2);
   };
 
-  const moveRight = (board) => {
-    const nBoard1 = reverse(board);
-    const nBoard2 = moveLeft(nBoard1);
-    return reverse(nBoard2);
-  };
-
-  const moveUp = (board) => {
-    const rotateBoard = rotateLeft(board);
-    const newBoard = moveLeft(rotateBoard);
-    return rotateRight(newBoard);
-  };
-  const moveDown = (board) => {
-    const rotateBoard = rotateRight(board);
-    const newBoard = moveLeft(rotateBoard);
-    return rotateLeft(newBoard);
-  };
+  const moveLeft = () => moveFunctionCreator(compress, merge, compress);
+  const moveRight = () => moveFunctionCreator(reverse, moveLeft, reverse);
+  const moveUp = () => moveFunctionCreator(rotateLeft, moveLeft, rotateRight);
+  const moveDown = () => moveFunctionCreator(rotateRight, moveLeft, rotateLeft);
 
   const onKeyDown = (e) => {
     let dir = () => {};
