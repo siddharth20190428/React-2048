@@ -78,44 +78,29 @@ const GameBoard = () => {
     return rotateLeft(newBoard);
   };
 
-  const left = () => {
-    checkEndGame();
-    const newBoard = moveLeft(board);
-    setBoard(generateRandom(newBoard));
-  };
-  const right = () => {
-    checkEndGame();
-    const newBoard = moveRight(board);
-    setBoard(generateRandom(newBoard));
-  };
-  const up = () => {
-    checkEndGame();
-    const newBoard = moveUp(board);
-    setBoard(generateRandom(newBoard));
-  };
-  const down = () => {
-    checkEndGame();
-    const newBoard = moveDown(board);
-    setBoard(generateRandom(newBoard));
-  };
-
   const onKeyDown = (e) => {
+    let dir = () => {};
     switch (e.key) {
       case "ArrowLeft":
-        left();
+        dir = moveLeft;
         break;
       case "ArrowRight":
-        right();
+        dir = moveRight;
         break;
       case "ArrowUp":
-        up();
+        dir = moveUp;
         break;
       case "ArrowDown":
-        down();
+        dir = moveDown;
         break;
 
       default:
+        return;
     }
+
+    checkEndGame();
+    const newBoard = dir(board);
+    setBoard(generateRandom(newBoard));
   };
 
   useEffect(() => {
