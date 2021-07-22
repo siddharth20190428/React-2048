@@ -40,7 +40,7 @@ export const generateRandom = (board) => {
   return board;
 };
 
-const compress = (board) => {
+export const compress = (board) => {
   const newBoard = getEmptyBoard();
   for (let i = 0; i < board.length; i++) {
     let col = 0;
@@ -72,7 +72,7 @@ export const moveLeft = (board) => {
   return compress(nBoard2);
 };
 
-const reverse = (board) => {
+export const reverse = (board) => {
   const reverseBoard = getEmptyBoard();
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -88,7 +88,7 @@ export const moveRight = (board) => {
   return reverse(nBoard2);
 };
 
-const rotateLeft = (board) => {
+export const rotateLeft = (board) => {
   const rotateBoard = getEmptyBoard();
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {
@@ -98,7 +98,7 @@ const rotateLeft = (board) => {
   return rotateBoard;
 };
 
-const rotateRight = (board) => {
+export const rotateRight = (board) => {
   const rotateBoard = getEmptyBoard();
   for (let i = 0; i < board.length; i++) {
     for (let j = 0; j < board[i].length; j++) {

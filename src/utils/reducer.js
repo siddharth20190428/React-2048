@@ -1,7 +1,7 @@
 let highScore = localStorage.getItem("highScore");
 
 export const initialState = {
-  highScore: highScore ? highScore : 0,
+  highScore: highScore ? +highScore : 0,
   score: 0,
 };
 
@@ -13,7 +13,7 @@ export const actionTypes = {
 const reducer = (state, action) => {
   switch (action.type) {
     case actionTypes.SET_HIGH_SCORE:
-      localStorage.setItem("highScore", action.highScore);
+      localStorage.setItem("highScore", action.score);
       return {
         ...state,
         highScore: action.score,
